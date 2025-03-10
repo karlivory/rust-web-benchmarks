@@ -4,5 +4,5 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-viz = { version = "0.2" }
+viz = { version = "0.10" }
 tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
