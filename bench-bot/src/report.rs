@@ -11,8 +11,8 @@ pub struct Report {
     metrics: Metrics,
 }
 
-const REPORT_HEADER: &str = "| Framework Name | Latency Avg | Latency Stdev | Latency Min | Latency Max | Request Total | Request Req/Sec | Transfer Total | Transfer Rate | Max. Memory Usage |";
-const TABLE_SEPARATOR: &str = "\n|---|---|---|---|---|---|---|---|---|---|\n";
+const REPORT_HEADER: &str = "| Framework Name | Latency Avg | Latency Stdev | Latency Min | Latency Max | Request Req/Sec | Transfer Rate | Max. Memory Usage |";
+const TABLE_SEPARATOR: &str = "\n|---|---|---|---|---|---|---|---|\n";
 
 impl Report {
     pub fn new(framework_name: &str, max_memory: f64, metrics: Metrics) -> Self {
@@ -31,15 +31,13 @@ impl Report {
 
         for r in reports {
             let row = format!(
-                "|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|",
+                "|{}|{}|{}|{}|{}|{}|{}|{}|",
                 r.framework_name,
                 r.metrics.latency.avg,
                 r.metrics.latency.std_env,
                 r.metrics.latency.min,
                 r.metrics.latency.max,
-                r.metrics.request.total,
                 r.metrics.request.req_per_sec,
-                r.metrics.transfer.total,
                 r.metrics.transfer.rate,
                 r.max_memory
             );

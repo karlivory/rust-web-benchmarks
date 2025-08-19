@@ -9,44 +9,44 @@ Responds "Hello, World!" to every request on "/" endpoint:
 - [poem](benchmark/hello-world/poem/src/main.rs)
 
 # Benchmark
-`rewrk --threads 14 --connections 512 -d 30s -h http://127.0.0.1:3000`
+`rewrk --threads 14 --connections 512 -d 60s -h http://127.0.0.1:3000`
 ## Comparisons
 
-| Framework Name | Latency Avg | Latency Stdev | Latency Min | Latency Max | Request Total | Request Req/Sec | Transfer Total | Transfer Rate | Max. Memory Usage |
-|---|---|---|---|---|---|---|---|---|---|
-|actix-web|1.74ms|0.99ms|0.02ms|12.77ms|8834540|294482.41|1.07GB|36.51MB/Sec|11.8MB|
-|axum|1.70ms|0.88ms|0.02ms|11.98ms|9011306|300391.76|1.09GB|37.24MB/Sec|16.7MB|
-|khttp|1.44ms|0.72ms|0.02ms|11.24ms|10654993|355189.40|1.40GB|47.76MB/Sec|1.6MB|
-|may_minihttp|1.45ms|0.88ms|0.02ms|17.11ms|10601768|353383.70|1.39GB|47.52MB/Sec|43.1MB|
-|poem|1.82ms|0.95ms|0.02ms|14.28ms|8448862|281641.16|1.02GB|34.92MB/Sec|22.0MB|
+| Framework Name | Latency Avg | Latency Stdev | Latency Min | Latency Max | Request Req/Sec | Transfer Rate | Max. Memory Usage |
+|---|---|---|---|---|---|---|---|
+|actix-web|1.68ms|1.02ms|0.02ms|25.32ms|305154.48|37.83MB/Sec|11.7MB|
+|axum|1.84ms|0.91ms|0.02ms|12.38ms|277492.38|34.40MB/Sec|16.6MB|
+|khttp|1.57ms|0.75ms|0.02ms|24.07ms|326118.37|43.85MB/Sec|1.8MB|
+|may_minihttp|1.59ms|0.92ms|0.02ms|18.36ms|321230.05|43.20MB/Sec|43.4MB|
+|poem|1.96ms|0.97ms|0.03ms|13.27ms|260965.63|32.35MB/Sec|22.0MB|
 
 ---
 
 # Benchmark
-`rewrk --threads 14 --connections 256 -d 30s -h http://127.0.0.1:3000`
+`rewrk --threads 14 --connections 256 -d 60s -h http://127.0.0.1:3000`
 ## Comparisons
 
-| Framework Name | Latency Avg | Latency Stdev | Latency Min | Latency Max | Request Total | Request Req/Sec | Transfer Total | Transfer Rate | Max. Memory Usage |
-|---|---|---|---|---|---|---|---|---|---|
-|actix-web|0.76ms|0.48ms|0.02ms|6.53ms|10031938|334395.98|1.21GB|41.46MB/Sec|7.7MB|
-|axum|0.87ms|0.44ms|0.02ms|5.14ms|8829165|294312.12|1.07GB|36.49MB/Sec|10.2MB|
-|khttp|0.74ms|0.37ms|0.02ms|6.95ms|10407988|346929.36|1.37GB|46.65MB/Sec|1.7MB|
-|may_minihttp|0.74ms|0.46ms|0.02ms|10.17ms|10318865|343981.35|1.36GB|46.25MB/Sec|26.2MB|
-|poem|0.90ms|0.47ms|0.02ms|7.05ms|8498602|283294.12|1.03GB|35.12MB/Sec|13.8MB|
+| Framework Name | Latency Avg | Latency Stdev | Latency Min | Latency Max | Request Req/Sec | Transfer Rate | Max. Memory Usage |
+|---|---|---|---|---|---|---|---|
+|actix-web|0.85ms|0.51ms|0.02ms|8.53ms|300913.76|37.31MB/Sec|7.7MB|
+|axum|0.93ms|0.46ms|0.02ms|4.80ms|273773.19|33.94MB/Sec|10.3MB|
+|khttp|0.81ms|0.38ms|0.02ms|6.65ms|317228.41|42.66MB/Sec|1.8MB|
+|may_minihttp|0.80ms|0.48ms|0.02ms|9.16ms|319537.66|42.97MB/Sec|26.2MB|
+|poem|0.99ms|0.49ms|0.02ms|5.50ms|258581.73|32.06MB/Sec|13.8MB|
 
 ---
 
 # Benchmark
-`rewrk --threads 14 --connections 64 -d 30s -h http://127.0.0.1:3000`
+`rewrk --threads 14 --connections 64 -d 60s -h http://127.0.0.1:3000`
 ## Comparisons
 
-| Framework Name | Latency Avg | Latency Stdev | Latency Min | Latency Max | Request Total | Request Req/Sec | Transfer Total | Transfer Rate | Max. Memory Usage |
-|---|---|---|---|---|---|---|---|---|---|
-|actix-web|0.22ms|0.14ms|0.01ms|3.51ms|8722086|290740.10|1.06GB|36.05MB/Sec|4.8MB|
-|axum|0.23ms|0.11ms|0.01ms|2.78ms|8412656|280429.48|1.02GB|34.77MB/Sec|5.7MB|
-|khttp|0.21ms|0.09ms|0.02ms|3.47ms|9124382|304146.55|1.20GB|40.90MB/Sec|1.6MB|
-|may_minihttp|0.21ms|0.15ms|0.01ms|4.30ms|9280547|309354.56|1.22GB|41.60MB/Sec|13.5MB|
-|poem|0.24ms|0.11ms|0.01ms|2.70ms|8073649|269124.70|1000.95MB|33.37MB/Sec|7.9MB|
+| Framework Name | Latency Avg | Latency Stdev | Latency Min | Latency Max | Request Req/Sec | Transfer Rate | Max. Memory Usage |
+|---|---|---|---|---|---|---|---|
+|actix-web|0.25ms|0.15ms|0.01ms|4.06ms|260360.14|32.28MB/Sec|4.6MB|
+|axum|0.24ms|0.11ms|0.01ms|2.39ms|265213.63|32.88MB/Sec|5.8MB|
+|khttp|0.22ms|0.09ms|0.02ms|3.72ms|285131.81|38.34MB/Sec|1.7MB|
+|may_minihttp|0.22ms|0.15ms|0.01ms|4.45ms|291608.55|39.21MB/Sec|13.4MB|
+|poem|0.25ms|0.11ms|0.01ms|2.10ms|256515.74|31.80MB/Sec|8.1MB|
 
 ---
 

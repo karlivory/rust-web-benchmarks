@@ -8,17 +8,17 @@ Intel(R) Core(TM) Ultra 5 125U
 
 # Benchmark
 
-`rewrk --threads 14 --connections 256 -d 30s -h http://127.0.0.1:3000`
+`rewrk --threads 14 --connections 256 -d 60s -h http://127.0.0.1:3000`
 
 ## Comparisons
 
-| Framework Name | Latency Avg | Latency Stdev | Latency Min | Latency Max | Request Total | Request Req/Sec | Transfer Total | Transfer Rate | Max. Memory Usage |
-|---|---|---|---|---|---|---|---|---|---|
-|actix-web|0.76ms|0.48ms|0.02ms|6.53ms|10031938|334395.98|1.21GB|41.46MB/Sec|7.7MB|
-|axum|0.87ms|0.44ms|0.02ms|5.14ms|8829165|294312.12|1.07GB|36.49MB/Sec|10.2MB|
-|khttp|0.74ms|0.37ms|0.02ms|6.95ms|10407988|346929.36|1.37GB|46.65MB/Sec|1.7MB|
-|may_minihttp|0.74ms|0.46ms|0.02ms|10.17ms|10318865|343981.35|1.36GB|46.25MB/Sec|26.2MB|
-|poem|0.90ms|0.47ms|0.02ms|7.05ms|8498602|283294.12|1.03GB|35.12MB/Sec|13.8MB|
+| Framework Name | Latency Avg | Latency Stdev | Latency Min | Latency Max | Request Req/Sec | Transfer Rate | Max. Memory Usage |
+|---|---|---|---|---|---|---|---|
+|actix-web|0.85ms|0.51ms|0.02ms|8.53ms|300913.76|37.31MB/Sec|7.7MB|
+|axum|0.93ms|0.46ms|0.02ms|4.80ms|273773.19|33.94MB/Sec|10.3MB|
+|khttp|0.81ms|0.38ms|0.02ms|6.65ms|317228.41|42.66MB/Sec|1.8MB|
+|may_minihttp|0.80ms|0.48ms|0.02ms|9.16ms|319537.66|42.97MB/Sec|26.2MB|
+|poem|0.99ms|0.49ms|0.02ms|5.50ms|258581.73|32.06MB/Sec|13.8MB|
 
 ## actix-web
 
@@ -26,46 +26,46 @@ Maximum Memory Usage: 7.7 MB
 
 ```
 Beginning round 1...
-Benchmarking 256 connections @ http://127.0.0.1:3000 for 30 second(s)
+Benchmarking 256 connections @ http://127.0.0.1:3000 for 1 minute(s)
   Latencies:
     Avg      Stdev    Min      Max      
-    0.76ms   0.48ms   0.02ms   6.53ms   
+    0.85ms   0.51ms   0.02ms   8.53ms   
   Requests:
-    Total: 10031938 Req/Sec: 334395.98
+    Total: 18054690 Req/Sec: 300913.76
   Transfer:
-    Total: 1.21 GB Transfer Rate: 41.46 MB/Sec
+    Total: 2.19 GB Transfer Rate: 37.31 MB/Sec
 ```
 
 ## axum
 
-Maximum Memory Usage: 10.2 MB
+Maximum Memory Usage: 10.3 MB
 
 ```
 Beginning round 1...
-Benchmarking 256 connections @ http://127.0.0.1:3000 for 30 second(s)
+Benchmarking 256 connections @ http://127.0.0.1:3000 for 1 minute(s)
   Latencies:
     Avg      Stdev    Min      Max      
-    0.87ms   0.44ms   0.02ms   5.14ms   
+    0.93ms   0.46ms   0.02ms   4.80ms   
   Requests:
-    Total: 8829165 Req/Sec: 294312.12
+    Total: 16426175 Req/Sec: 273773.19
   Transfer:
-    Total: 1.07 GB Transfer Rate: 36.49 MB/Sec
+    Total: 1.99 GB Transfer Rate: 33.94 MB/Sec
 ```
 
 ## khttp
 
-Maximum Memory Usage: 1.7 MB
+Maximum Memory Usage: 1.8 MB
 
 ```
 Beginning round 1...
-Benchmarking 256 connections @ http://127.0.0.1:3000 for 30 second(s)
+Benchmarking 256 connections @ http://127.0.0.1:3000 for 1 minute(s)
   Latencies:
     Avg      Stdev    Min      Max      
-    0.74ms   0.37ms   0.02ms   6.95ms   
+    0.81ms   0.38ms   0.02ms   6.65ms   
   Requests:
-    Total: 10407988 Req/Sec: 346929.36
+    Total: 19033360 Req/Sec: 317228.41
   Transfer:
-    Total: 1.37 GB Transfer Rate: 46.65 MB/Sec
+    Total: 2.50 GB Transfer Rate: 42.66 MB/Sec
 ```
 
 ## may_minihttp
@@ -74,14 +74,14 @@ Maximum Memory Usage: 26.2 MB
 
 ```
 Beginning round 1...
-Benchmarking 256 connections @ http://127.0.0.1:3000 for 30 second(s)
+Benchmarking 256 connections @ http://127.0.0.1:3000 for 1 minute(s)
   Latencies:
     Avg      Stdev    Min      Max      
-    0.74ms   0.46ms   0.02ms   10.17ms  
+    0.80ms   0.48ms   0.02ms   9.16ms   
   Requests:
-    Total: 10318865 Req/Sec: 343981.35
+    Total: 19171803 Req/Sec: 319537.66
   Transfer:
-    Total: 1.36 GB Transfer Rate: 46.25 MB/Sec
+    Total: 2.52 GB Transfer Rate: 42.97 MB/Sec
 ```
 
 ## poem
@@ -90,12 +90,12 @@ Maximum Memory Usage: 13.8 MB
 
 ```
 Beginning round 1...
-Benchmarking 256 connections @ http://127.0.0.1:3000 for 30 second(s)
+Benchmarking 256 connections @ http://127.0.0.1:3000 for 1 minute(s)
   Latencies:
     Avg      Stdev    Min      Max      
-    0.90ms   0.47ms   0.02ms   7.05ms   
+    0.99ms   0.49ms   0.02ms   5.50ms   
   Requests:
-    Total: 8498602 Req/Sec: 283294.12
+    Total: 15514884 Req/Sec: 258581.73
   Transfer:
-    Total: 1.03 GB Transfer Rate: 35.12 MB/Sec
+    Total: 1.88 GB Transfer Rate: 32.06 MB/Sec
 ```
