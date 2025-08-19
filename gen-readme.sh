@@ -15,6 +15,8 @@ Responds "Hello, World!" to every request on "/" endpoint:
 - [poem](benchmark/hello-world/poem/src/main.rs)
 
 ## Benchmarks
+**Specs**: Intel(R) Core(TM) Ultra 5 125U, 14 cpus.
+
 EOF
 
 RESULTS=(
