@@ -1,11 +1,10 @@
 [package]
-name = "hello-world-actix-web"
+name = "hello-world-may"
 version = "0.1.0"
-authors = ["smallfish <smallfish.xy@gmail.com>"]
 edition = "2021"
 
 [dependencies]
-actix-web = "4"
+may_minihttp = { version = "0.1", default-features = false }
 
 [profile.release]
 opt-level = 3

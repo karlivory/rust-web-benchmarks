@@ -1,11 +1,11 @@
 [package]
-name = "hello-world-actix-web"
+name = "hello-world-khttp"
 version = "0.1.0"
-authors = ["smallfish <smallfish.xy@gmail.com>"]
 edition = "2021"
 
 [dependencies]
-actix-web = "4"
+khttp = { git = "https://github.com/karlivory/khttp.git", rev = "7a77dcb4e5ce319b534736bdbb60704a200cdfc4" }
+# khttp = "0.1.5"
 
 [profile.release]
 opt-level = 3

@@ -1,4 +1,5 @@
 use self::markdown::Markdown;
+use self::report::{Metrics, Report};
 use clap::Parser;
 use log::LevelFilter;
 use serde::{Deserialize, Serialize};
@@ -14,7 +15,6 @@ use std::{
     time::Duration,
 };
 use sysinfo::{CpuExt, PidExt, ProcessExt, System, SystemExt};
-use self::report::{Metrics, Report};
 
 mod markdown;
 mod report;
@@ -31,7 +31,7 @@ struct Args {
     output_dir: PathBuf,
 
     /// Connection count of each benchmark.
-    #[clap(short, default_value = "500")]
+    #[clap(short, default_value = "64")]
     connections: usize,
 
     /// Duration of each benchmark in seconds.
@@ -43,7 +43,7 @@ struct Args {
     url: String,
 
     /// Cooling down for each benchmark.
-    #[clap(long, default_value = "5")]
+    #[clap(long, default_value = "30")]
     cd: u64,
 }
 
@@ -108,9 +108,9 @@ fn main() {
     let members_len = members.len();
 
     let rewrk_args = [
-        "-t",
+        "--threads",
         &cpu_count,
-        "-c",
+        "--connections",
         &conn_count,
         "-d",
         &duration,
@@ -131,8 +131,7 @@ fn main() {
     base_md.add_item("## Cpu");
     base_md.add_item(cpu_name);
     base_md.add_item("# Benchmark");
-    base_md.add_item("Command:");
-    base_md.add_item(format!("```\n{}\n```", bench_command));
+    base_md.add_item(format!("`{}`", bench_command));
 
     let mut output_map = HashMap::new();
     let mut reports = Vec::with_capacity(members.len());
@@ -201,11 +200,7 @@ fn main() {
                 result_md.add_item(format!("```\n{}\n```", stdout.trim()));
 
                 if let Ok(metrics) = stdout.parse::<Metrics>() {
-                    reports.push(Report::new(
-                        framework_name,
-                        max_memory,
-                        metrics,
-                    ));
+                    reports.push(Report::new(framework_name, max_memory, metrics));
                 } else {
                     log::warn!("Could not parse benchmark result: {}", stdout);
                 }
@@ -226,7 +221,9 @@ fn main() {
 
         output_md.add_item(result_md.finish());
 
-        let output_path = args.output_dir.join(format!("{}.md", bench_type));
+        let output_path = args
+            .output_dir
+            .join(format!("{}-{}.md", bench_type, conn_count));
 
         log::info!("Writing output to {:?}.", output_path);
         fs::write(output_path, output_md.finish()).unwrap();

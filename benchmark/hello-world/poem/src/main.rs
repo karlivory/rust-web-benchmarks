@@ -1,10 +1,8 @@
-use poem::{
-    get, handler, listener::TcpListener, Route, Server,
-};
+use poem::{get, handler, listener::TcpListener, Route, Server};
 
 #[handler]
-fn hello() -> String {
-    format!("Hello, World!")
+fn hello() -> &'static str {
+    "Hello, World!"
 }
 
 #[tokio::main]
