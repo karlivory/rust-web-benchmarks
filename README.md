@@ -12,7 +12,7 @@ Responds "Hello, World!" to every request on "/" endpoint:
 `rewrk --threads 14 --connections 512 -d 30s -h http://127.0.0.1:3000`
 ## Comparisons
 
-| Framework Name | Latency.Avg | Latency.Stdev | Latency.Min | Latency.Max | Request.Total | Request.Req/Sec | Transfer.Total | Transfer.Rate | Max. Memory Usage |
+| Framework Name | Latency Avg | Latency Stdev | Latency Min | Latency Max | Request Total | Request Req/Sec | Transfer Total | Transfer Rate | Max. Memory Usage |
 |---|---|---|---|---|---|---|---|---|---|
 |actix-web|1.74ms|0.99ms|0.02ms|12.77ms|8834540|294482.41|1.07GB|36.51MB/Sec|11.8MB|
 |axum|1.70ms|0.88ms|0.02ms|11.98ms|9011306|300391.76|1.09GB|37.24MB/Sec|16.7MB|
@@ -26,7 +26,7 @@ Responds "Hello, World!" to every request on "/" endpoint:
 `rewrk --threads 14 --connections 256 -d 30s -h http://127.0.0.1:3000`
 ## Comparisons
 
-| Framework Name | Latency.Avg | Latency.Stdev | Latency.Min | Latency.Max | Request.Total | Request.Req/Sec | Transfer.Total | Transfer.Rate | Max. Memory Usage |
+| Framework Name | Latency Avg | Latency Stdev | Latency Min | Latency Max | Request Total | Request Req/Sec | Transfer Total | Transfer Rate | Max. Memory Usage |
 |---|---|---|---|---|---|---|---|---|---|
 |actix-web|0.76ms|0.48ms|0.02ms|6.53ms|10031938|334395.98|1.21GB|41.46MB/Sec|7.7MB|
 |axum|0.87ms|0.44ms|0.02ms|5.14ms|8829165|294312.12|1.07GB|36.49MB/Sec|10.2MB|
@@ -40,7 +40,7 @@ Responds "Hello, World!" to every request on "/" endpoint:
 `rewrk --threads 14 --connections 64 -d 30s -h http://127.0.0.1:3000`
 ## Comparisons
 
-| Framework Name | Latency.Avg | Latency.Stdev | Latency.Min | Latency.Max | Request.Total | Request.Req/Sec | Transfer.Total | Transfer.Rate | Max. Memory Usage |
+| Framework Name | Latency Avg | Latency Stdev | Latency Min | Latency Max | Request Total | Request Req/Sec | Transfer Total | Transfer Rate | Max. Memory Usage |
 |---|---|---|---|---|---|---|---|---|---|
 |actix-web|0.22ms|0.14ms|0.01ms|3.51ms|8722086|290740.10|1.06GB|36.05MB/Sec|4.8MB|
 |axum|0.23ms|0.11ms|0.01ms|2.78ms|8412656|280429.48|1.02GB|34.77MB/Sec|5.7MB|

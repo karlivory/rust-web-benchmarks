@@ -2,7 +2,7 @@ use std::str::FromStr;
 
 #[derive(PartialEq, Debug)]
 pub enum MetricsError {
-    ParseError
+    ParseError,
 }
 
 pub struct Report {
@@ -11,13 +11,11 @@ pub struct Report {
     metrics: Metrics,
 }
 
-const REPORT_HEADER: &str = "| Framework Name | Latency.Avg | Latency.Stdev | Latency.Min | Latency.Max | Request.Total | Request.Req/Sec | Transfer.Total | Transfer.Rate | Max. Memory Usage |";
+const REPORT_HEADER: &str = "| Framework Name | Latency Avg | Latency Stdev | Latency Min | Latency Max | Request Total | Request Req/Sec | Transfer Total | Transfer Rate | Max. Memory Usage |";
 const TABLE_SEPARATOR: &str = "\n|---|---|---|---|---|---|---|---|---|---|\n";
 
 impl Report {
-    pub fn new(framework_name: &str,
-               max_memory: f64,
-               metrics: Metrics) -> Self {
+    pub fn new(framework_name: &str, max_memory: f64, metrics: Metrics) -> Self {
         Self {
             framework_name: framework_name.to_string(),
             metrics,
@@ -32,17 +30,19 @@ impl Report {
         res.push_str(TABLE_SEPARATOR);
 
         for r in reports {
-            let row = format!("|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|",
-                              r.framework_name,
-                              r.metrics.latency.avg,
-                              r.metrics.latency.std_env,
-                              r.metrics.latency.min,
-                              r.metrics.latency.max,
-                              r.metrics.request.total,
-                              r.metrics.request.req_per_sec,
-                              r.metrics.transfer.total,
-                              r.metrics.transfer.rate,
-                              r.max_memory);
+            let row = format!(
+                "|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|",
+                r.framework_name,
+                r.metrics.latency.avg,
+                r.metrics.latency.std_env,
+                r.metrics.latency.min,
+                r.metrics.latency.max,
+                r.metrics.request.total,
+                r.metrics.request.req_per_sec,
+                r.metrics.transfer.total,
+                r.metrics.transfer.rate,
+                r.max_memory
+            );
             res.push_str(&row);
             res.push('\n');
         }
@@ -103,8 +103,7 @@ impl FromStr for Latency {
     type Err = MetricsError;
 
     fn from_str(value: &str) -> Result<Self, Self::Err> {
-        let parts = value.trim().split_whitespace()
-            .collect::<Vec<&str>>();
+        let parts = value.trim().split_whitespace().collect::<Vec<&str>>();
 
         if let [avg, std_env, min, max, ..] = parts[..] {
             Ok(Self {
@@ -131,8 +130,7 @@ impl FromStr for Request {
     type Err = MetricsError;
 
     fn from_str(value: &str) -> Result<Self, Self::Err> {
-        let parts = value.trim().split_whitespace()
-            .collect::<Vec<&str>>();
+        let parts = value.trim().split_whitespace().collect::<Vec<&str>>();
 
         // ["Total:", total, "Req/Sec:", rps]
         if let [_, total, _, req_per_sec, ..] = parts[..] {
@@ -158,8 +156,7 @@ impl FromStr for Transfer {
     type Err = MetricsError;
 
     fn from_str(value: &str) -> Result<Self, Self::Err> {
-        let parts = value.trim().split_whitespace()
-            .collect::<Vec<&str>>();
+        let parts = value.trim().split_whitespace().collect::<Vec<&str>>();
 
         // ["Total:", total, total_unit, "Transfer", "Rate:", rate, rate_unit]
         if let [_, total, total_unit, _, _, rate, rate_unit, ..] = parts[..] {
@@ -183,7 +180,10 @@ mod tests {
         #[test]
         fn generate() {
             let given = vec![
-                Report::new("actix-web", 13.7, r#"
+                Report::new(
+                    "actix-web",
+                    13.7,
+                    r#"
                      Beginning round 1...
                      Benchmarking 500 connections @ http://127.0.0.1:3000 for 30 second(s)
                        Latencies:
@@ -193,8 +193,14 @@ mod tests {
                          Total: 30178057 Req/Sec: 1006342.33
                        Transfer:
                          Total: 3.65 GB Transfer Rate: 124.76 MB/Sec
-                "#.parse().expect("parse metric fail")),
-                Report::new("axum", 12.4, r#"
+                "#
+                    .parse()
+                    .expect("parse metric fail"),
+                ),
+                Report::new(
+                    "axum",
+                    12.4,
+                    r#"
                      Beginning round 1...
                      Benchmarking 500 connections @ http://127.0.0.1:3000 for 30 second(s)
                        Latencies:
@@ -204,7 +210,10 @@ mod tests {
                          Total: 20765149 Req/Sec: 692354.35
                        Transfer:
                          Total: 2.51 GB Transfer Rate: 85.84 MB/Sec
-                "#.parse().expect("parse metric fail")),
+                "#
+                    .parse()
+                    .expect("parse metric fail"),
+                ),
             ];
 
             let actual = Report::generate_from(&given);
@@ -240,23 +249,22 @@ Benchmarking 500 connections @ http://127.0.0.1:3000 for 30 second(s)
             "#;
             let actual = given.parse::<Metrics>();
 
-            let expect = Ok(
-                Metrics {
-                    latency: Latency {
-                        avg: "0.50ms".to_string(),
-                        std_env: "1.22ms".to_string(),
-                        min: "0.02ms".to_string(),
-                        max: "41.93ms".to_string(),
-                    },
-                    request: Request {
-                        total: "30178057".to_string(),
-                        req_per_sec: "1006342.33".to_string(),
-                    },
-                    transfer: Transfer {
-                        total: "3.65GB".to_string(),
-                        rate: "124.76MB/Sec".to_string(),
-                    },
-                });
+            let expect = Ok(Metrics {
+                latency: Latency {
+                    avg: "0.50ms".to_string(),
+                    std_env: "1.22ms".to_string(),
+                    min: "0.02ms".to_string(),
+                    max: "41.93ms".to_string(),
+                },
+                request: Request {
+                    total: "30178057".to_string(),
+                    req_per_sec: "1006342.33".to_string(),
+                },
+                transfer: Transfer {
+                    total: "3.65GB".to_string(),
+                    rate: "124.76MB/Sec".to_string(),
+                },
+            });
 
             assert_eq!(actual, expect);
         }

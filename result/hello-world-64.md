@@ -12,7 +12,7 @@ Intel(R) Core(TM) Ultra 5 125U
 
 ## Comparisons
 
-| Framework Name | Latency.Avg | Latency.Stdev | Latency.Min | Latency.Max | Request.Total | Request.Req/Sec | Transfer.Total | Transfer.Rate | Max. Memory Usage |
+| Framework Name | Latency Avg | Latency Stdev | Latency Min | Latency Max | Request Total | Request Req/Sec | Transfer Total | Transfer Rate | Max. Memory Usage |
 |---|---|---|---|---|---|---|---|---|---|
 |actix-web|0.22ms|0.14ms|0.01ms|3.51ms|8722086|290740.10|1.06GB|36.05MB/Sec|4.8MB|
 |axum|0.23ms|0.11ms|0.01ms|2.78ms|8412656|280429.48|1.02GB|34.77MB/Sec|5.7MB|
