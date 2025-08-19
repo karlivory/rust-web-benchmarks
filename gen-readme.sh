@@ -14,12 +14,13 @@ Responds "Hello, World!" to every request on "/" endpoint:
 - [may_minihttp](benchmark/hello-world/may_minihttp/src/main.rs)
 - [poem](benchmark/hello-world/poem/src/main.rs)
 
+## Benchmarks
 EOF
 
 RESULTS=(
-  result/hello-world-512.md
-  result/hello-world-256.md
   result/hello-world-64.md
+  result/hello-world-256.md
+  result/hello-world-512.md
 )
 
 {
@@ -28,44 +29,41 @@ RESULTS=(
 
     awk '
       BEGIN {
-        saw_bench = 0
         in_table = 0
         table_started = 0
       }
 
-      /^# Benchmark$/ {
+      # command
+      /^[[:space:]]*`[^`]*rewrk[^`]*`[[:space:]]*$/ {
         print
-        saw_bench = 1
+        print ""
         next
       }
 
-      saw_bench && /^[[:space:]]*`/ {
-        print
-        saw_bench = 0
-        next
-      }
-
-      saw_bench && /^[[:space:]]*$/ { next }
-
+      # start of table
       /^##[[:space:]]+Comparisons[[:space:]]*$/ {
-        print
         in_table = 1
+        table_started = 0
         next
       }
 
-      in_table && table_started == 0 && /^[[:space:]]*$/ { print; next }
-
-      in_table && /^\|/ {
+      # in table
+      in_table && /^[[:space:]]*\|/ {
         print
         table_started = 1
         next
       }
 
-      in_table && table_started == 1 && !/^\|/ { exit }
+      # end of table
+      in_table && table_started && !/^[[:space:]]*\|/ {
+        in_table = 0
+        next
+      }
+
+      { next }
     ' "$file"
 
-    echo
-    echo '---'
+    # Separate blocks with a blank line
     echo
   done
 } >>"$OUTPUT"
