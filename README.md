@@ -1,6 +1,6 @@
 # Rust web benchmarks
 
-Responds "Hello, World!" to every request on "/" endpoint:
+Responds "Hello, World!" to every GET request on "/" endpoint:
 
 - [actix-web](benchmark/hello-world/actix-web/src/main.rs)
 - [axum](benchmark/hello-world/axum/src/main.rs)
