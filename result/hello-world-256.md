@@ -14,58 +14,58 @@ Intel(R) Core(TM) Ultra 5 125U
 
 | Framework Name | Latency Avg | Latency Stdev | Latency Min | Latency Max | Request Req/Sec | Transfer Rate | Max. Memory Usage |
 |---|---|---|---|---|---|---|---|
-|actix-web|0.85ms|0.51ms|0.02ms|8.53ms|300913.76|37.31MB/Sec|7.7MB|
-|axum|0.93ms|0.46ms|0.02ms|4.80ms|273773.19|33.94MB/Sec|10.3MB|
-|khttp|0.81ms|0.38ms|0.02ms|6.65ms|317228.41|42.66MB/Sec|1.8MB|
-|may_minihttp|0.80ms|0.48ms|0.02ms|9.16ms|319537.66|42.97MB/Sec|26.2MB|
-|poem|0.99ms|0.49ms|0.02ms|5.50ms|258581.73|32.06MB/Sec|13.8MB|
+|actix-web|0.84ms|0.50ms|0.02ms|7.81ms|302923.99|37.56MB/Sec|7.4MB|
+|axum|0.92ms|0.45ms|0.02ms|6.82ms|277900.13|34.45MB/Sec|10.4MB|
+|khttp|0.79ms|0.38ms|0.02ms|6.20ms|325103.03|43.72MB/Sec|1.7MB|
+|may_minihttp|0.79ms|0.47ms|0.02ms|8.10ms|323608.13|43.51MB/Sec|26.2MB|
+|poem|0.97ms|0.48ms|0.02ms|6.04ms|264768.51|32.83MB/Sec|13.8MB|
 
 ## actix-web
 
-Maximum Memory Usage: 7.7 MB
+Maximum Memory Usage: 7.4 MB
 
 ```
 Beginning round 1...
 Benchmarking 256 connections @ http://127.0.0.1:3000 for 1 minute(s)
   Latencies:
     Avg      Stdev    Min      Max      
-    0.85ms   0.51ms   0.02ms   8.53ms   
+    0.84ms   0.50ms   0.02ms   7.81ms   
   Requests:
-    Total: 18054690 Req/Sec: 300913.76
+    Total: 18175283 Req/Sec: 302923.99
   Transfer:
-    Total: 2.19 GB Transfer Rate: 37.31 MB/Sec
+    Total: 2.20 GB Transfer Rate: 37.56 MB/Sec
 ```
 
 ## axum
 
-Maximum Memory Usage: 10.3 MB
+Maximum Memory Usage: 10.4 MB
 
 ```
 Beginning round 1...
 Benchmarking 256 connections @ http://127.0.0.1:3000 for 1 minute(s)
   Latencies:
     Avg      Stdev    Min      Max      
-    0.93ms   0.46ms   0.02ms   4.80ms   
+    0.92ms   0.45ms   0.02ms   6.82ms   
   Requests:
-    Total: 16426175 Req/Sec: 273773.19
+    Total: 16673866 Req/Sec: 277900.13
   Transfer:
-    Total: 1.99 GB Transfer Rate: 33.94 MB/Sec
+    Total: 2.02 GB Transfer Rate: 34.45 MB/Sec
 ```
 
 ## khttp
 
-Maximum Memory Usage: 1.8 MB
+Maximum Memory Usage: 1.7 MB
 
 ```
 Beginning round 1...
 Benchmarking 256 connections @ http://127.0.0.1:3000 for 1 minute(s)
   Latencies:
     Avg      Stdev    Min      Max      
-    0.81ms   0.38ms   0.02ms   6.65ms   
+    0.79ms   0.38ms   0.02ms   6.20ms   
   Requests:
-    Total: 19033360 Req/Sec: 317228.41
+    Total: 19506050 Req/Sec: 325103.03
   Transfer:
-    Total: 2.50 GB Transfer Rate: 42.66 MB/Sec
+    Total: 2.56 GB Transfer Rate: 43.72 MB/Sec
 ```
 
 ## may_minihttp
@@ -77,11 +77,11 @@ Beginning round 1...
 Benchmarking 256 connections @ http://127.0.0.1:3000 for 1 minute(s)
   Latencies:
     Avg      Stdev    Min      Max      
-    0.80ms   0.48ms   0.02ms   9.16ms   
+    0.79ms   0.47ms   0.02ms   8.10ms   
   Requests:
-    Total: 19171803 Req/Sec: 319537.66
+    Total: 19416321 Req/Sec: 323608.13
   Transfer:
-    Total: 2.52 GB Transfer Rate: 42.97 MB/Sec
+    Total: 2.55 GB Transfer Rate: 43.51 MB/Sec
 ```
 
 ## poem
@@ -93,9 +93,9 @@ Beginning round 1...
 Benchmarking 256 connections @ http://127.0.0.1:3000 for 1 minute(s)
   Latencies:
     Avg      Stdev    Min      Max      
-    0.99ms   0.49ms   0.02ms   5.50ms   
+    0.97ms   0.48ms   0.02ms   6.04ms   
   Requests:
-    Total: 15514884 Req/Sec: 258581.73
+    Total: 15885838 Req/Sec: 264768.51
   Transfer:
-    Total: 1.88 GB Transfer Rate: 32.06 MB/Sec
+    Total: 1.92 GB Transfer Rate: 32.83 MB/Sec
 ```

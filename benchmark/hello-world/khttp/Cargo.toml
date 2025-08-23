@@ -4,8 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-khttp = { git = "https://github.com/karlivory/khttp.git", rev = "7a77dcb4e5ce319b534736bdbb60704a200cdfc4" }
-# khttp = "0.1.5"
+khttp = { git = "https://github.com/karlivory/khttp.git", rev = "3464051b1c842ce1176d4f346c682cadc14985e1" }
 
 [profile.release]
 opt-level = 3
